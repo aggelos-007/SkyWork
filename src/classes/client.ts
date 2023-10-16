@@ -1,6 +1,7 @@
 import * as color from '../auxiliar/colors'
-import { Client, Collection, ClientOptions, GatewayIntentBits, IntentsBitField, Partials } from 'discord.js';
+import { Client, Collection, ClientOptions, IntentsBitField, Partials } from 'discord.js';
 import { eventLoader, commandLoader } from './loaders';
+import { cwd } from 'process';
 
 export interface SWClientOptions extends ClientOptions {
     token?: string,
@@ -14,7 +15,7 @@ declare module 'discord.js' {
     }
 }
 
-class SkyWork extends Client {
+export class SkyWork extends Client {
     public declare options: (Omit<ClientOptions, "intents" & "partials"> & { partials: Partials } & { intents: IntentsBitField }) & SWClientOptions
     public client: any
     
@@ -30,6 +31,7 @@ class SkyWork extends Client {
         client.bot = new Collection()
         client.bot.set(token ?? '', options)
         console.log(color.default.white + 'Booting up...')
+        new eventLoader(client, cwd()+'/node_modules/SkyWork/dist/events')
         client.login(token)
         console.log(`${color.default.FrameWork} Core is running...`)
     }
@@ -44,5 +46,3 @@ class SkyWork extends Client {
         new commandLoader(this.client, dir)
     }
 }
-
-export { SkyWork }

@@ -2,21 +2,21 @@ import { readdirSync, lstatSync } from 'fs';
 import { join } from 'path';
 import * as color from '../auxiliar/colors';
 import { cwd } from 'process';
-import { Client, Collection } from 'discord.js';
+import { Collection } from 'discord.js';
 
-class eventLoader {
+export class eventLoader {
     constructor(client: any, dir: string) {
-        const eventsPath = join(cwd() + dir);
+        const eventsPath = dir;
         const eventFiles = readdirSync(eventsPath).filter((file: any) => file.endsWith('.js'));
 		console.log(`${color.default.FrameWork} ╭ Loading ${color.default.green}events${color.default.white}...`)
         for (const file of eventFiles) {
         	const filePath = join(eventsPath, file);
         	const event = require(filePath);
-        	if (event.once) {
-        		client.once(event.name, (...args: any) => event.code(client, ...args));
+        	if (event.default.once) {
+        		client.once(event.default.name, (...args: any) => event.default.code(client, ...args));
 				console.log(`${color.default.FrameWork} ├ Loaded ${color.default.blue + file + color.default.white} for ${color.default.red + 'once'}`)
         	} else {
-        		client.on(event.name, (...args: any) => event.code(client, ...args));
+        		client.on(event.default.name, (...args: any) => event.default.code(client, ...args));
 				console.log(`${color.default.FrameWork} ├ Loaded ${color.default.blue + file + color.default.white}`)
         	}
         }
@@ -24,7 +24,7 @@ class eventLoader {
     }
 }
 
-class commandLoader {
+export class commandLoader {
     private client
     constructor(client: any, dir: string) {
         this.client = client;
@@ -40,8 +40,8 @@ class commandLoader {
             const command = require(join(root, dir, file));
             if (!command) continue;
             if(command.data){
-                if(command.data.code && command.data.name || command.data.alwaysExecute){
-                    command.type = dir.split('/')[2]
+                if(command.code && command.data.name || command.data.alwaysExecute){
+                    command.directory = dir
                     this.client.commands.set(`${dir}/${file}`, command);
                     console.log(`${color.default.FrameWork} ├ Loaded ${color.default.blue + file + color.default.white}`)
                 } else {console.log(`${color.default.FrameWork + color.default.red} ├ Failed to load ${color.default.blue + file + color.default.red} missing ${color.default.blue}data options`)}
@@ -49,5 +49,3 @@ class commandLoader {
         }
     }
 }
-
-export { eventLoader, commandLoader };

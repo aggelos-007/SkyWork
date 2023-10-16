@@ -9,7 +9,7 @@ declare module 'discord.js' {
         bot: Collection<string, any>;
     }
 }
-declare class SkyWork extends Client {
+export declare class SkyWork extends Client {
     options: (Omit<ClientOptions, "intents" & "partials"> & {
         partials: Partials;
     } & {
@@ -21,5 +21,4 @@ declare class SkyWork extends Client {
     eventLoader(dir: string): Promise<void>;
     commandLoader(dir: string): Promise<void>;
 }
-export { SkyWork };
 //# sourceMappingURL=client.d.ts.map

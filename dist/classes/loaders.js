@@ -27,22 +27,21 @@ exports.commandLoader = exports.eventLoader = void 0;
 const fs_1 = require("fs");
 const path_1 = require("path");
 const color = __importStar(require("../auxiliar/colors"));
-const process_1 = require("process");
 const discord_js_1 = require("discord.js");
 class eventLoader {
     constructor(client, dir) {
-        const eventsPath = (0, path_1.join)((0, process_1.cwd)() + dir);
+        const eventsPath = dir;
         const eventFiles = (0, fs_1.readdirSync)(eventsPath).filter((file) => file.endsWith('.js'));
         console.log(`${color.default.FrameWork} ╭ Loading ${color.default.green}events${color.default.white}...`);
         for (const file of eventFiles) {
             const filePath = (0, path_1.join)(eventsPath, file);
             const event = require(filePath);
-            if (event.once) {
-                client.once(event.name, (...args) => event.code(client, ...args));
+            if (event.default.once) {
+                client.once(event.default.name, (...args) => event.default.code(client, ...args));
                 console.log(`${color.default.FrameWork} ├ Loaded ${color.default.blue + file + color.default.white} for ${color.default.red + 'once'}`);
             }
             else {
-                client.on(event.name, (...args) => event.code(client, ...args));
+                client.on(event.default.name, (...args) => event.default.code(client, ...args));
                 console.log(`${color.default.FrameWork} ├ Loaded ${color.default.blue + file + color.default.white}`);
             }
         }
@@ -69,8 +68,8 @@ class commandLoader {
             if (!command)
                 continue;
             if (command.data) {
-                if (command.data.code && command.data.name || command.data.alwaysExecute) {
-                    command.type = dir.split('/')[2];
+                if (command.code && command.data.name || command.data.alwaysExecute) {
+                    command.directory = dir;
                     this.client.commands.set(`${dir}/${file}`, command);
                     console.log(`${color.default.FrameWork} ├ Loaded ${color.default.blue + file + color.default.white}`);
                 }

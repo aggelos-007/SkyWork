@@ -1,12 +1,38 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CommandBuilder = void 0;
+exports.CommandBuilder = exports.SlashBuilder = void 0;
+const discord_js_1 = require("discord.js");
+class SlashBuilder extends discord_js_1.SlashCommandBuilder {
+    devOnly;
+    adminOnly;
+    ownerOnly;
+    disabled;
+    type = "slash";
+    setDevOnly() {
+        this.devOnly = true;
+        return this;
+    }
+    setAdminOnly() {
+        this.adminOnly = true;
+        return this;
+    }
+    setOwnerOnly() {
+        this.ownerOnly = true;
+        return this;
+    }
+    setDisabled() {
+        this.disabled = true;
+        return this;
+    }
+}
+exports.SlashBuilder = SlashBuilder;
 class CommandBuilder {
     name;
     aliases;
     description;
     devOnly;
     adminOnly;
+    ownerOnly;
     alwaysExecutes;
     disabled;
     type;
@@ -28,6 +54,10 @@ class CommandBuilder {
     }
     setAdminOnly() {
         this.adminOnly = true;
+        return this;
+    }
+    setOwnerOnly() {
+        this.ownerOnly = true;
         return this;
     }
     alwaysExecute() {

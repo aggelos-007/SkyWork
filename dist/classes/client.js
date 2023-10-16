@@ -42,7 +42,7 @@ class SkyWork extends discord_js_1.Client {
         client.bot = new discord_js_1.Collection();
         client.bot.set(token ?? '', options);
         console.log(color.default.white + 'Booting up...');
-        new loaders_1.eventLoader(client, (0, process_1.cwd)() + '/node_modules/SkyWork/dist/events');
+        new loaders_1.eventLoader(client, (0, process_1.cwd)() + '/SkyWork/dist/events');
         client.login(token);
         console.log(`${color.default.FrameWork} Core is running...`);
     }

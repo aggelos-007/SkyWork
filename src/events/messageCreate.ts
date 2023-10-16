@@ -1,4 +1,4 @@
-const { Events, PermissionsBitField, ChannelType } = require("discord.js");
+import { Events, PermissionsBitField, ChannelType } from "discord.js";
 
 export default {
     name: Events.MessageCreate,

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const { Events, PermissionsBitField, ChannelType } = require("discord.js");
+const discord_js_1 = require("discord.js");
 exports.default = {
-    name: Events.MessageCreate,
+    name: discord_js_1.Events.MessageCreate,
     code: async (client, message) => {
         let bot = client.bot.get(client.token);
         let prefix = bot.prefix;
@@ -35,7 +35,7 @@ exports.default = {
                     cmd.code(client, msg);
                 }
                 else {
-                    if (cmd.data.disabled || message.author.bot || message.channel.type == ChannelType.DM)
+                    if (cmd.data.disabled || message.author.bot || message.channel.type == discord_js_1.ChannelType.DM)
                         return;
                     if (cmd.data.devOnly == true) {
                         if (!bot.developers.some((d) => d.id.includes(message.author.id)))
@@ -44,7 +44,7 @@ exports.default = {
                             cmd.code(client, msg, args);
                     }
                     else if (cmd.data.adminOnly == true) {
-                        if (!message.member.permissions.has(PermissionsBitField.Flags.Administrator))
+                        if (!message.member.permissions.has(discord_js_1.PermissionsBitField.Flags.Administrator))
                             message.reply(':x: You are not an Admin').then((s) => setTimeout(() => s.delete().catch((err) => err), 5000));
                         else
                             cmd.code(client, msg, args);

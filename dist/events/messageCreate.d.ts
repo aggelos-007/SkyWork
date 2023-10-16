@@ -1,5 +1,6 @@
+import { Events } from "discord.js";
 declare const _default: {
-    name: any;
+    name: Events;
     code: (client: any, message: any) => Promise<void>;
 };
 export default _default;

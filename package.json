@@ -20,7 +20,7 @@
   ],
   "author": "aggelos-007",
   "license": "ISC",
-  "types": "./library/index.d.ts",
+  "types": "library/index.d.ts",
   "bugs": {
     "url": "https://github.com/aggelos-007/SkyWork/issues"
   },

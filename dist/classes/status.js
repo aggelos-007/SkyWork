@@ -38,14 +38,15 @@ class SkyStatus {
             client.user.setPresence({ activities: [{ name: text, type: status[0].type }], status: status[0].status });
             console.log(`${colors.default.FrameWork} ${colors.default.blue}Status ${colors.default.white}have been successfully set!`);
             setInterval(() => {
-                status.forEach((status, number) => {
+                status.forEach((stat, number) => {
                     setTimeout(() => {
                         client.user.setPresence({
                             activities: [{
                                     name: text,
-                                    type: status.type
+                                    type: stat.type,
+                                    url: stat.url ?? undefined
                                 }],
-                            status: status.status
+                            status: stat.status
                         });
                     }, (0, ms_1.default)(time) * number);
                 });

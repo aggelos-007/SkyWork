@@ -5,7 +5,8 @@ import * as colors from '../auxiliar/colors'
 export interface SWStatus {
     text?: string,
     type?: ActivityType,
-    status?: "online" | "idle" | "dnd" | "offline"
+    status?: "online" | "idle" | "dnd" | "offline",
+    url?: string
 }
 
 export class SkyStatus {
@@ -16,15 +17,16 @@ export class SkyStatus {
             client.user.setPresence({activities: [{name: text,type: status[0].type}],status: status[0].status})
             console.log(`${colors.default.FrameWork} ${colors.default.blue}Status ${colors.default.white}have been successfully set!`)
             setInterval(()=> {
-                status.forEach((status:any, number: number) => {
+                status.forEach((stat:any, number: number) => {
                     setTimeout(() => {
                         client.user.setPresence({
                             activities: [{
                                 name: text,
-                                type: status.type
+                                type: stat.type,
+                                url: stat.url ?? undefined
                             }],
-                            status: status.status
-                        })
+                            status: stat.status
+                        });
                     }, ms(time)*number)
                 })
             }, ms(time)*status.length)

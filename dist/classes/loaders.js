@@ -29,10 +29,11 @@ const path_1 = require("path");
 const color = __importStar(require("../auxiliar/colors"));
 const discord_js_1 = require("discord.js");
 class eventLoader {
-    constructor(client, dir) {
+    constructor(client, dir, defaultEvents) {
         const eventsPath = dir;
         const eventFiles = (0, fs_1.readdirSync)(eventsPath).filter((file) => file.endsWith('.js'));
-        console.log(`${color.default.FrameWork} ╭ Loading ${color.default.green}events${color.default.white}...`);
+        const def = defaultEvents === true ? `${color.default.cyan} default ` : '';
+        console.log(`${color.default.FrameWork} ╭ Loading ${def}${color.default.green}events${color.default.white}...`);
         for (const file of eventFiles) {
             const filePath = (0, path_1.join)(eventsPath, file);
             const event = require(filePath);

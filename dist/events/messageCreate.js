@@ -50,7 +50,6 @@ exports.default = {
                             cmd.code(client, msg, args);
                     }
                     else if (cmd.data.ownerOnly == true) {
-                        console.log(message.guild.ownerId != message.author.id);
                         if (message.guild.ownerId != message.author.id)
                             message.reply(':x: You are not the server owner').then((s) => setTimeout(() => s.delete().catch((err) => err), 5000));
                         else

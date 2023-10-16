@@ -17,15 +17,17 @@ export class SkyStatus {
             client.user.setPresence({activities: [{name: text,type: status[0].type}],status: status[0].status})
             console.log(`${colors.default.FrameWork} ${colors.default.blue}Status ${colors.default.white}have been successfully set!`)
             setInterval(()=> {
-                status.forEach((stat:any, number: number) => {
+                status.forEach((status:any, number: number) => {
+                    let text = status[0]?.text?.replace("{guilds}", Intl.NumberFormat('en-US', { notation: "compact", maximumFractionDigits: 1}).format(client.guilds.cache.size))
+                    text = text?.replace("{members}", Intl.NumberFormat('en-US', { notation: "compact", maximumFractionDigits: 1}).format(client.users.cache.size))
                     setTimeout(() => {
                         client.user.setPresence({
                             activities: [{
                                 name: text,
-                                type: stat.type,
-                                url: stat.url ?? undefined
+                                type: status.type,
+                                url: status.url ?? undefined
                             }],
-                            status: stat.status
+                            status: status.status
                         });
                     }, ms(time)*number)
                 })

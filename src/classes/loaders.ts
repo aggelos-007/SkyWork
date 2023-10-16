@@ -2,11 +2,11 @@ import { readdirSync, lstatSync } from 'fs';
 import { join } from 'path';
 import * as color from '../auxiliar/colors';
 import { cwd } from 'process';
-import { Collection } from 'discord.js';
+import { Collection, Events } from 'discord.js';
 
 export class eventLoader {
     constructor(client: any, dir: string, defaultEvents?: boolean) {
-        const eventsPath = dir;
+        const eventsPath = cwd() + dir;
         const eventFiles = readdirSync(eventsPath).filter((file: any) => file.endsWith('.js'));
         const def = defaultEvents === true ? `${color.default.cyan}default ` : ''
 		console.log(`${color.default.FrameWork} ╭ Loading ${def}${color.default.green}events${color.default.white}...`)

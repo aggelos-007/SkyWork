@@ -27,7 +27,6 @@ exports.SkyWork = void 0;
 const color = __importStar(require("../auxiliar/colors"));
 const discord_js_1 = require("discord.js");
 const loaders_1 = require("./loaders");
-const process_1 = require("process");
 class SkyWork extends discord_js_1.Client {
     client;
     constructor(options) {
@@ -44,7 +43,7 @@ class SkyWork extends discord_js_1.Client {
         console.log(color.default.white + 'Booting up...');
         client.login(token);
         console.log(`${color.default.FrameWork} Core is running...`);
-        new loaders_1.eventLoader(client, (0, process_1.cwd)() + '/node_modules/SkyWork/dist/events', true);
+        new loaders_1.eventLoader(client, '/node_modules/SkyWork/dist/events', true);
     }
     config(name, options) {
         this.client.config = new discord_js_1.Collection();

@@ -8,7 +8,7 @@ export class eventLoader {
     constructor(client: any, dir: string, defaultEvents?: boolean) {
         const eventsPath = dir;
         const eventFiles = readdirSync(eventsPath).filter((file: any) => file.endsWith('.js'));
-        const def = defaultEvents === true ? `${color.default.cyan} default ` : ''
+        const def = defaultEvents === true ? `${color.default.cyan}default ` : ''
 		console.log(`${color.default.FrameWork} ╭ Loading ${def}${color.default.green}events${color.default.white}...`)
         for (const file of eventFiles) {
         	const filePath = join(eventsPath, file);

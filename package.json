@@ -1,0 +1,34 @@
+{
+  "name": "skywork",
+  "version": "1.0.0",
+  "description": "A usefull tool that helps you build your discord bots based on discord.js",
+  "main": "library/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aggelos-007/SkyWork.git"
+  },
+  "keywords": [
+    "FrameWork",
+    "discord.js",
+    "tool",
+    "wrapper",
+    "d.js",
+    "djs"
+  ],
+  "author": "aggelos-007",
+  "license": "ISC",
+  "types": "./library/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/aggelos-007/SkyWork/issues"
+  },
+  "homepage": "https://github.com/aggelos-007/SkyWork#readme",
+  "devDependencies": {
+    "@types/node": "^20.8.6"
+  },
+  "dependencies": {
+    "discord.js": "^14.13.0"
+  }
+}

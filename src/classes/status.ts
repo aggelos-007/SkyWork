@@ -18,8 +18,8 @@ export class SkyStatus {
             console.log(`${colors.default.FrameWork} ${colors.default.blue}Status ${colors.default.white}have been successfully set!`)
             setInterval(()=> {
                 status.forEach((status:any, number: number) => {
-                    let text = status[0]?.text?.replace("{guilds}", Intl.NumberFormat('en-US', { notation: "compact", maximumFractionDigits: 1}).format(client.guilds.cache.size))
-                    text = text?.replace("{members}", Intl.NumberFormat('en-US', { notation: "compact", maximumFractionDigits: 1}).format(client.users.cache.size))
+                    let text = status.text.replace("{guilds}", Intl.NumberFormat('en-US', { notation: "compact", maximumFractionDigits: 1}).format(client.guilds.cache.size))
+                    text = text.replace("{members}", Intl.NumberFormat('en-US', { notation: "compact", maximumFractionDigits: 1}).format(client.users.cache.size))
                     setTimeout(() => {
                         client.user.setPresence({
                             activities: [{

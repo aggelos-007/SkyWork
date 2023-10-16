@@ -6,7 +6,6 @@ class SlashBuilder extends discord_js_1.SlashCommandBuilder {
     devOnly;
     adminOnly;
     ownerOnly;
-    disabled;
     type = "slash";
     setDevOnly() {
         this.devOnly = true;
@@ -18,10 +17,6 @@ class SlashBuilder extends discord_js_1.SlashCommandBuilder {
     }
     setOwnerOnly() {
         this.ownerOnly = true;
-        return this;
-    }
-    setDisabled() {
-        this.disabled = true;
         return this;
     }
 }

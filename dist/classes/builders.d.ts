@@ -3,12 +3,10 @@ export declare class SlashBuilder extends SlashCommandBuilder {
     devOnly?: boolean;
     adminOnly?: boolean;
     ownerOnly?: boolean;
-    disabled?: boolean;
     type: string;
     setDevOnly(): this;
     setAdminOnly(): this;
     setOwnerOnly(): this;
-    setDisabled(): this;
 }
 export declare class CommandBuilder {
     name?: string;

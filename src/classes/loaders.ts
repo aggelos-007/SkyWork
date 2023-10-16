@@ -2,7 +2,7 @@ import { readdirSync, lstatSync } from 'fs';
 import { join } from 'path';
 import * as color from '../auxiliar/colors';
 import { cwd } from 'process';
-import { Collection, Events } from 'discord.js';
+import { Collection } from 'discord.js';
 
 export class eventLoader {
     constructor(client: any, dir: string, defaultEvents?: boolean) {

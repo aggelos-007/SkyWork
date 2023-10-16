@@ -4,7 +4,6 @@ export class SlashBuilder extends SlashCommandBuilder {
     devOnly?: boolean;
     adminOnly?: boolean;
     ownerOnly?: boolean;
-    disabled?: boolean;
     type = "slash";
     setDevOnly(){
         this.devOnly = true;
@@ -16,10 +15,6 @@ export class SlashBuilder extends SlashCommandBuilder {
     }
     setOwnerOnly(){
         this.ownerOnly = true;
-        return this;
-    }
-    setDisabled(){
-        this.disabled = true;
         return this;
     }
 }

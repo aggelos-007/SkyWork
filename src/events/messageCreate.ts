@@ -38,7 +38,6 @@ export default {
                         if(!message.member.permissions.has(PermissionsBitField.Flags.Administrator)) message.reply(':x: You are not an Admin').then((s:any)=> setTimeout(() => s.delete().catch((err:any) => err), 5000));
                         else cmd.code(client, msg, args)
                     } else if(cmd.data.ownerOnly == true) {
-                        console.log(message.guild.ownerId != message.author.id)
                         if(message.guild.ownerId != message.author.id) message.reply(':x: You are not the server owner').then((s:any)=> setTimeout(() => s.delete().catch((err:any) => err), 5000));
                         else cmd.code(client, msg, args)
                     } else {

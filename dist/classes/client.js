@@ -27,15 +27,16 @@ exports.SkyWork = void 0;
 const color = __importStar(require("../auxiliar/colors"));
 const discord_js_1 = require("discord.js");
 const loaders_1 = require("./loaders");
+const status_1 = require("./status");
 class SkyWork extends discord_js_1.Client {
     client;
     constructor(options) {
         super(options);
-        let { token, intents, mobile, prefix, partials } = options;
+        let { token, intents, prefix, partials } = options;
         //Configuring djs client
         const client = new discord_js_1.Client({
             intents: intents,
-            partials: partials
+            partials: partials,
         });
         this.client = client;
         client.bot = new discord_js_1.Collection();
@@ -54,6 +55,9 @@ class SkyWork extends discord_js_1.Client {
     }
     async commandLoader(dir) {
         new loaders_1.commandLoader(this.client, dir);
+    }
+    async clientStatus(status, time) {
+        new status_1.SkyStatus(this.client, status, time);
     }
 }
 exports.SkyWork = SkyWork;

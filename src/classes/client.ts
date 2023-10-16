@@ -2,11 +2,11 @@ import * as color from '../auxiliar/colors'
 import { Client, Collection, ClientOptions, IntentsBitField, Partials } from 'discord.js';
 import { eventLoader, commandLoader } from './loaders';
 import { cwd } from 'process';
+import { SWStatus, SkyStatus } from './status';
 
 export interface SWClientOptions extends ClientOptions {
     token?: string,
     prefix?: string[],
-    mobile?: boolean,
 }
 
 declare module 'discord.js' {
@@ -21,11 +21,11 @@ export class SkyWork extends Client {
     
     constructor(options: SWClientOptions){
         super(options)
-        let { token, intents, mobile, prefix, partials } = options;
+        let { token, intents, prefix, partials } = options;
         //Configuring djs client
         const client = new Client({
             intents: intents,
-            partials: partials
+            partials: partials,            
         });
         this.client = client
         client.bot = new Collection()
@@ -44,5 +44,8 @@ export class SkyWork extends Client {
     }
     async commandLoader(dir: string){
         new commandLoader(this.client, dir)
+    }
+    async clientStatus(status:Array<SWStatus>, time: string){
+        new SkyStatus(this.client, status, time)
     }
 }

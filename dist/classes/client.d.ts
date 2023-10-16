@@ -1,8 +1,8 @@
 import { Client, Collection, ClientOptions, IntentsBitField, Partials } from 'discord.js';
+import { SWStatus } from './status';
 export interface SWClientOptions extends ClientOptions {
     token?: string;
     prefix?: string[];
-    mobile?: boolean;
 }
 declare module 'discord.js' {
     interface Client {
@@ -20,5 +20,6 @@ export declare class SkyWork extends Client {
     config(name: string, options: object): void;
     eventLoader(dir: string): Promise<void>;
     commandLoader(dir: string): Promise<void>;
+    clientStatus(status: Array<SWStatus>, time: string): Promise<void>;
 }
 //# sourceMappingURL=client.d.ts.map

@@ -26,9 +26,11 @@
   },
   "homepage": "https://github.com/aggelos-007/SkyWork#readme",
   "devDependencies": {
+    "@types/ms": "^0.7.32",
     "@types/node": "^20.8.6"
   },
   "dependencies": {
-    "discord.js": "^14.13.0"
+    "discord.js": "^14.13.0",
+    "ms": "^2.1.3"
   }
 }

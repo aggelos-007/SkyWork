@@ -31,9 +31,9 @@ export class SkyWork extends Client {
         client.bot = new Collection()
         client.bot.set(token ?? '', options)
         console.log(color.default.white + 'Booting up...')
-        new eventLoader(client, cwd()+'/node_modules/SkyWork/dist/events')
         client.login(token)
         console.log(`${color.default.FrameWork} Core is running...`)
+        new eventLoader(client, cwd()+'/node_modules/SkyWork/dist/events', true)
     }
     config(name: string, options: object){
         this.client.config = new Collection()

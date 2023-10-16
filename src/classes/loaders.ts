@@ -5,10 +5,11 @@ import { cwd } from 'process';
 import { Collection } from 'discord.js';
 
 export class eventLoader {
-    constructor(client: any, dir: string) {
+    constructor(client: any, dir: string, defaultEvents?: boolean) {
         const eventsPath = dir;
         const eventFiles = readdirSync(eventsPath).filter((file: any) => file.endsWith('.js'));
-		console.log(`${color.default.FrameWork} ╭ Loading ${color.default.green}events${color.default.white}...`)
+        const def = defaultEvents === true ? `${color.default.cyan} default ` : ''
+		console.log(`${color.default.FrameWork} ╭ Loading ${def}${color.default.green}events${color.default.white}...`)
         for (const file of eventFiles) {
         	const filePath = join(eventsPath, file);
         	const event = require(filePath);

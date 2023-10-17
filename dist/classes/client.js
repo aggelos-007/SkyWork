@@ -32,7 +32,6 @@ class SkyWork {
     client;
     constructor(options) {
         let { token, intents, prefix, partials } = options;
-        //Configuring djs client
         const client = new discord_js_1.Client({
             intents: intents,
             partials: partials,

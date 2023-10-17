@@ -30,13 +30,13 @@ export default {
                 }
                 else {
                     if(cmd.data.disabled || message.author.bot || message.channel.type == ChannelType.DM) return;
-                    if(cmd.data.devOnly){
+                    if(cmd.data.devOnly == true){
                         if(!bot.developers.some((d:any) => d.id.includes(message.author.id))) message.reply(':x: You are not my developer!').then((s:any)=> setTimeout(() => s.delete().catch((err:any) => err), 5000));
                         else cmd.code(client, message, args)
-                    } else if(cmd.data.adminOnly) {
+                    } else if(cmd.data.adminOnly == true) {
                         if(!message.member.permissions.has(PermissionsBitField.Flags.Administrator)) message.reply(':x: You are not an Admin').then((s:any)=> setTimeout(() => s.delete().catch((err:any) => err), 5000));
                         else cmd.code(client, message, args)
-                    } else if(cmd.data.ownerOnly) {
+                    } else if(cmd.data.ownerOnly == true) {
                         if(message.guild.ownerId != message.author.id) message.reply(':x: You are not the server owner').then((s:any)=> setTimeout(() => s.delete().catch((err:any) => err), 5000));
                         else cmd.code(client, message, args)
                     } else {

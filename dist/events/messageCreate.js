@@ -37,19 +37,19 @@ exports.default = {
                 else {
                     if (cmd.data.disabled || message.author.bot || message.channel.type == discord_js_1.ChannelType.DM)
                         return;
-                    if (cmd.data.devOnly) {
+                    if (cmd.data.devOnly == true) {
                         if (!bot.developers.some((d) => d.id.includes(message.author.id)))
                             message.reply(':x: You are not my developer!').then((s) => setTimeout(() => s.delete().catch((err) => err), 5000));
                         else
                             cmd.code(client, message, args);
                     }
-                    else if (cmd.data.adminOnly) {
+                    else if (cmd.data.adminOnly == true) {
                         if (!message.member.permissions.has(discord_js_1.PermissionsBitField.Flags.Administrator))
                             message.reply(':x: You are not an Admin').then((s) => setTimeout(() => s.delete().catch((err) => err), 5000));
                         else
                             cmd.code(client, message, args);
                     }
-                    else if (cmd.data.ownerOnly) {
+                    else if (cmd.data.ownerOnly == true) {
                         if (message.guild.ownerId != message.author.id)
                             message.reply(':x: You are not the server owner').then((s) => setTimeout(() => s.delete().catch((err) => err), 5000));
                         else

@@ -1,7 +1,16 @@
 # SkyWork
 SkyWork is a framework which helps you build both slash and prefix commands with ease and it doesn't even need to make events as you can use default ones! It is the best way to make commands  for your bots, easy way to add status and handle easier the commands.
 ## Navigation
-[ Will do later ]
+- [Home](https://github.com/aggelos-007/SkyWork#skywork)
+- [Installation](https://github.com/aggelos-007/SkyWork#installation)
+- [Initializing client](https://github.com/aggelos-007/SkyWork)
+- [Creating Commands](https://github.com/aggelos-007/SkyWork#creating-commands)
+    1. [Prefix](https://github.com/aggelos-007/SkyWork#prefix-commands)
+    2. [Slash](https://github.com/aggelos-007/SkyWork#slash-commands)
+    3. [Extras](https://github.com/aggelos-007/SkyWork#extra-fields)
+- [Adding Status](https://github.com/aggelos-007/SkyWork#client-status)
+- [Custom events](https://github.com/aggelos-007/SkyWork#client-status)
+    - [Disable Default Events](https://github.com/aggelos-007/SkyWork#remove-default-events)
 
 ## Installation
 Make sure that you've installed **node.js**, and it's version `v16.x` or above. Once done, open your folder ( from any IDE or Terminal ) and run this script:
@@ -97,7 +106,7 @@ client.clientStatus("an array of the below json", "Time")
 }
 ```
 
-## Example
+#### Example
 ```js
 const { ActivityType } = require('discord.js')
 

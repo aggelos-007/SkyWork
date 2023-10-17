@@ -93,7 +93,6 @@ new SlashBuilder()
 .setAdminOnly()
 .setOwnerOnly()
 ```
-<br>
 
 ### Client status
 Adding status using SkyWork is super easy. You just have to write this little peice of code in your main file ( eg. `main.js` ):

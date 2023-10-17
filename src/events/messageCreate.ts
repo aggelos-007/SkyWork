@@ -25,7 +25,7 @@ export default {
             
             if(!commands) return;
             commands.forEach((cmd:any) => {
-                if(cmd.data.alwaysExecute){
+                if(cmd.data.alwaysExecute == true){
                     cmd.code(client, message)
                 }
                 else {

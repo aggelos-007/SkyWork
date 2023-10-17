@@ -9,7 +9,7 @@ exports.default = {
         const slashes = client.commands.filter((cmd) => cmd.data.type == 'slash' && cmd.data.name == interaction.commandName);
         slashes.forEach((cmd) => {
             if (cmd.data.devOnly == true) {
-                if (!client.developers.some((d) => d.id.includes(client.author.id)))
+                if (!client.developers.includes(client.author.id))
                     interaction.reply({ content: ':x: You are not my developer!', ephemeral: true });
                 else
                     cmd.code(client, interaction);

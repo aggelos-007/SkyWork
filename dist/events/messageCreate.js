@@ -38,7 +38,7 @@ exports.default = {
                     if (cmd.data.disabled || message.author.bot || message.channel.type == discord_js_1.ChannelType.DM)
                         return;
                     if (cmd.data.devOnly == true) {
-                        if (!bot.developers.some((d) => d.id.includes(message.author.id)))
+                        if (!bot.developers.includes(message.author.id))
                             message.reply(':x: You are not my developer!').then((s) => setTimeout(() => s.delete().catch((err) => err), 5000));
                         else
                             cmd.code(client, message, args);

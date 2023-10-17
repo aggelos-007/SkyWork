@@ -15,6 +15,7 @@ It's as simple as stealing a candy from a kid.
 You'll have to write the following code to initialize a  basic bot client, in a `main.js` file:
 ```js
 const { SkyWork } = require('skywork')
+
 const client = new SkyWork({
         token: 'TOKEN',
         intents: [ "Intents from discord.js" ], // you have to add the intents manually
@@ -33,9 +34,10 @@ Now that you've loaded commands, you've got to create a folder named `commands` 
 2. Slash
 
 #### Prefix commands
-To create an example prefix command you will have to write the following code in a `prefix_command.js` file:
+To create an example prefix command you will have to write the following code in a `ping_prefix.js` file:
 ```js
 const { CommandBuilder } = require("skywork")
+
 module.exports = {
     data: new CommandBuilder().setName('ping').setDescription('An example ping command to see how to create prefix commands'),
     code: async (client, msg) => { // or async (client, message)
@@ -45,10 +47,10 @@ module.exports = {
 ```
 
 #### Slash commands
-To create an example slash command you will have to write the following code in a `slash_command.js` file:
+To create an example slash command you will have to write the following code in a `ping_slash.js` file:
 ```js
 const { SlashBuilder } = require("skywork")
-//works like SlashCommandBuilder of discord.js
+//works like SlashCommandBuilder from discord.js
 module.exports = {
     data: new SlashBuilder().setName('ping').setDescription('An example ping command to see how to create slash commands'),
     code: async (client, int) => { // or async (client, interaction)
@@ -92,10 +94,12 @@ client.clientStatus("an array of the below json", "Time")
   text: "text", // available: ["{members}", "guilds"]
   type: ActivityType,
   status: "status" // available: "online"/"offline"/"dnd"/"idle"
-}
+}```
 
-//example
+## Example
+```js
 const { ActivityType } = require('discord.js')
+
 client.clientStatus([{
   text: "{members} members and {guilds} guilds",
   type: ActivityType.Watching,
@@ -118,8 +122,8 @@ const { Events } = require('discord.js');
 module.exports =  {
     name: Events.ClientReady,
     once: true,
-    code: async (_client_) => {
-        console.log(`Client read at ${_client_.user.tag}`)
+    code: async (client) => {
+        console.log(`Client read at ${client.user.tag}`)
     }
 }
 ```

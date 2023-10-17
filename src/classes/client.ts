@@ -6,6 +6,7 @@ import { SWStatus, SkyStatus } from './status';
 export interface SWClientOptions extends ClientOptions {
     token?: string,
     prefix?: string[],
+    disableDefaults?: boolean
 }
 
 declare module 'discord.js' {
@@ -20,7 +21,7 @@ export class SkyWork {
     public client: Client
     
     constructor(options: SWClientOptions){
-        let { token, intents, prefix, partials } = options;
+        let { token, intents, prefix, partials, disableDefaults } = options;
         const client = new Client({
             intents: intents,
             partials: partials,            

@@ -31,7 +31,7 @@ const status_1 = require("./status");
 class SkyWork {
     client;
     constructor(options) {
-        let { token, intents, prefix, partials } = options;
+        let { token, intents, prefix, partials, disableDefaults } = options;
         const client = new discord_js_1.Client({
             intents: intents,
             partials: partials,

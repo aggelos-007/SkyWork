@@ -4,6 +4,8 @@ const discord_js_1 = require("discord.js");
 exports.default = {
     name: discord_js_1.Events.MessageCreate,
     code: async (client, message) => {
+        if (client.bot.find((s) => s.token).disableDefaults)
+            return;
         let bot = client.bot.get(client.token);
         let prefix = bot.prefix;
         let multiprefix = bot.multiprefix;
@@ -17,9 +19,8 @@ exports.default = {
             if (!commands)
                 return;
             commands.forEach((cmd) => {
-                let msg = message;
-                if (cmd.data.alwaysExecute == true) {
-                    cmd.code(client, msg);
+                if (cmd.data.alwaysExecute) {
+                    cmd.code(client, message);
                 }
             });
         }
@@ -30,33 +31,32 @@ exports.default = {
             if (!commands)
                 return;
             commands.forEach((cmd) => {
-                let msg = message;
-                if (cmd.data.alwaysExecute == true) {
-                    cmd.code(client, msg);
+                if (cmd.data.alwaysExecute) {
+                    cmd.code(client, message);
                 }
                 else {
                     if (cmd.data.disabled || message.author.bot || message.channel.type == discord_js_1.ChannelType.DM)
                         return;
-                    if (cmd.data.devOnly == true) {
+                    if (cmd.data.devOnly) {
                         if (!bot.developers.some((d) => d.id.includes(message.author.id)))
                             message.reply(':x: You are not my developer!').then((s) => setTimeout(() => s.delete().catch((err) => err), 5000));
                         else
-                            cmd.code(client, msg, args);
+                            cmd.code(client, message, args);
                     }
-                    else if (cmd.data.adminOnly == true) {
+                    else if (cmd.data.adminOnly) {
                         if (!message.member.permissions.has(discord_js_1.PermissionsBitField.Flags.Administrator))
                             message.reply(':x: You are not an Admin').then((s) => setTimeout(() => s.delete().catch((err) => err), 5000));
                         else
-                            cmd.code(client, msg, args);
+                            cmd.code(client, message, args);
                     }
-                    else if (cmd.data.ownerOnly == true) {
+                    else if (cmd.data.ownerOnly) {
                         if (message.guild.ownerId != message.author.id)
                             message.reply(':x: You are not the server owner').then((s) => setTimeout(() => s.delete().catch((err) => err), 5000));
                         else
-                            cmd.code(client, msg, args);
+                            cmd.code(client, message, args);
                     }
                     else {
-                        cmd.code(client, msg, args);
+                        cmd.code(client, message, args);
                     }
                 }
             });

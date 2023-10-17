@@ -17,11 +17,11 @@ You'll have to write the following code to initialize a  basic bot client, in a 
 const { SkyWork } = require('skywork')
 
 const client = new SkyWork({
-        token: 'TOKEN',
-        intents: [ "Intents from discord.js" ], // you have to add the intents manually
-        partials: [ Partials ],
-        prefix: 'PREFIX', // or prefix: ['prefix1', 'prefix2' etc.]
-        developers: ['Your ID here'] // you can add more ID(s) by doing developers: ['ID1', 'ID2' etc.]
+    token: 'TOKEN',
+    intents: [ "Intents from discord.js" ], // you have to add the intents manually
+    partials: [ Partials ],
+    prefix: 'PREFIX', // or prefix: ['prefix1', 'prefix2' etc.]
+    developers: ['Your ID here'] // you can add more ID(s) by doing developers: ['ID1', 'ID2' etc.]
 })
 ```
 ### Creating commands
@@ -94,7 +94,8 @@ client.clientStatus("an array of the below json", "Time")
   text: "text", // available: ["{members}", "guilds"]
   type: ActivityType,
   status: "status" // available: "online"/"offline"/"dnd"/"idle"
-}```
+}
+```
 
 ## Example
 ```js
@@ -127,6 +128,15 @@ module.exports =  {
     }
 }
 ```
+#### Remove default events
+To remove default events just go to your SkyWork client and add this field
+```js
+const { SkyWork } = require('skywork')
 
+const client = new SkyWork({
+    ...,
+    disableDefaults: true
+})
+```
 # Thanks
 Thank you so much for reading it till the very end. You can contribute to this project by opening a pull request!

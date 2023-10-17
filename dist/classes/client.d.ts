@@ -3,6 +3,7 @@ import { SWStatus } from './status';
 export interface SWClientOptions extends ClientOptions {
     token?: string;
     prefix?: string[];
+    disableDefaults?: boolean;
 }
 declare module 'discord.js' {
     interface Client {

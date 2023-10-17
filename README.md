@@ -12,7 +12,7 @@ npm i github:aggelos-007/SkyWork discord.js
 This section will guide you in initializing a client, creating commands and logging into your bot client.
 ### Initializing client
 It's as simple as stealing a candy from a kid.
-You'll have to write the following code to initialize a  basic bot client, in a `main.js` file:
+You'll have to write the following code to initialize a  basic bot client, in a `index.js` file:
 ```js
 const { SkyWork } = require('skywork')
 

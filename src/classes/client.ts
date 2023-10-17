@@ -12,17 +12,16 @@ export interface SWClientOptions extends ClientOptions {
 declare module 'discord.js' {
     interface Client {
         bot: Collection<string, any>;
+        config: Collection<string, any>;
     }
 }
 
-export class SkyWork extends Client {
+export class SkyWork {
     public declare options: (Omit<ClientOptions, "intents" & "partials"> & { partials: Partials } & { intents: IntentsBitField }) & SWClientOptions
-    public client: any
+    public client: Client
     
     constructor(options: SWClientOptions){
-        super(options)
         let { token, intents, prefix, partials } = options;
-        //Configuring djs client
         const client = new Client({
             intents: intents,
             partials: partials,            
@@ -39,13 +38,13 @@ export class SkyWork extends Client {
         this.client.config = new Collection()
         this.client.config.set(name, options)
     }
-    async eventLoader(dir: string){
+    eventLoader(dir: string){
         new eventLoader(this.client, dir)
     }
-    async commandLoader(dir: string){
+    commandLoader(dir: string){
         new commandLoader(this.client, dir)
     }
-    async clientStatus(status:Array<SWStatus>, time: string){
+    clientStatus(status:Array<SWStatus>, time: string){
         new SkyStatus(this.client, status, time)
     }
 }

@@ -7,19 +7,20 @@ export interface SWClientOptions extends ClientOptions {
 declare module 'discord.js' {
     interface Client {
         bot: Collection<string, any>;
+        config: Collection<string, any>;
     }
 }
-export declare class SkyWork extends Client {
+export declare class SkyWork {
     options: (Omit<ClientOptions, "intents" & "partials"> & {
         partials: Partials;
     } & {
         intents: IntentsBitField;
     }) & SWClientOptions;
-    client: any;
+    client: Client;
     constructor(options: SWClientOptions);
     config(name: string, options: object): void;
-    eventLoader(dir: string): Promise<void>;
-    commandLoader(dir: string): Promise<void>;
-    clientStatus(status: Array<SWStatus>, time: string): Promise<void>;
+    eventLoader(dir: string): void;
+    commandLoader(dir: string): void;
+    clientStatus(status: Array<SWStatus>, time: string): void;
 }
 //# sourceMappingURL=client.d.ts.map

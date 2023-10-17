@@ -1,7 +1,6 @@
 import * as color from '../auxiliar/colors'
 import { Client, Collection, ClientOptions, IntentsBitField, Partials } from 'discord.js';
-import { eventLoader, commandLoader } from './loaders';
-import { cwd } from 'process';
+import { eventLoader, commandLoader, eventLoaderTS } from './loaders';
 import { SWStatus, SkyStatus } from './status';
 
 export interface SWClientOptions extends ClientOptions {
@@ -32,7 +31,7 @@ export class SkyWork {
         console.log(color.default.white + 'Booting up...')
         client.login(token)
         console.log(`${color.default.FrameWork} Core is running...`)
-        new eventLoader(client, '/node_modules/SkyWork/dist/events', true)
+        new eventLoaderTS(client, '/node_modules/SkyWork/dist/events')
     }
     config(name: string, options: object){
         this.client.config = new Collection()

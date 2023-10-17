@@ -23,18 +23,38 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.commandLoader = exports.eventLoader = void 0;
+exports.commandLoader = exports.eventLoaderTS = exports.eventLoader = void 0;
 const fs_1 = require("fs");
 const path_1 = require("path");
 const color = __importStar(require("../auxiliar/colors"));
 const process_1 = require("process");
 const discord_js_1 = require("discord.js");
 class eventLoader {
-    constructor(client, dir, defaultEvents) {
+    constructor(client, dir) {
         const eventsPath = (0, process_1.cwd)() + dir;
         const eventFiles = (0, fs_1.readdirSync)(eventsPath).filter((file) => file.endsWith('.js'));
-        const def = defaultEvents === true ? `${color.default.cyan}default ` : '';
-        console.log(`${color.default.FrameWork} ╭ Loading ${def}${color.default.green}events${color.default.white}...`);
+        console.log(`${color.default.FrameWork} ╭ Loading ${color.default.cyan}default ${color.default.green}events${color.default.white}...`);
+        for (const file of eventFiles) {
+            const filePath = (0, path_1.join)(eventsPath, file);
+            const event = require(filePath);
+            if (event.once) {
+                client.once(event.name, (...args) => event.code(client, ...args));
+                console.log(`${color.default.FrameWork} ├ Loaded ${color.default.blue + file + color.default.white} for ${color.default.red + 'once'}`);
+            }
+            else {
+                client.on(event.name, (...args) => event.code(client, ...args));
+                console.log(`${color.default.FrameWork} ├ Loaded ${color.default.blue + file + color.default.white}`);
+            }
+        }
+        console.log(`${color.default.FrameWork} ╰ Events ${color.default.green}Loaded`);
+    }
+}
+exports.eventLoader = eventLoader;
+class eventLoaderTS {
+    constructor(client, dir) {
+        const eventsPath = (0, process_1.cwd)() + dir;
+        const eventFiles = (0, fs_1.readdirSync)(eventsPath).filter((file) => file.endsWith('.js'));
+        console.log(`${color.default.FrameWork} ╭ Loading ${color.default.green}events${color.default.white}...`);
         for (const file of eventFiles) {
             const filePath = (0, path_1.join)(eventsPath, file);
             const event = require(filePath);
@@ -50,7 +70,7 @@ class eventLoader {
         console.log(`${color.default.FrameWork} ╰ Events ${color.default.green}Loaded`);
     }
 }
-exports.eventLoader = eventLoader;
+exports.eventLoaderTS = eventLoaderTS;
 class commandLoader {
     client;
     constructor(client, dir) {

@@ -1,5 +1,8 @@
 export declare class eventLoader {
-    constructor(client: any, dir: string, defaultEvents?: boolean);
+    constructor(client: any, dir: string);
+}
+export declare class eventLoaderTS {
+    constructor(client: any, dir: string);
 }
 export declare class commandLoader {
     #private;

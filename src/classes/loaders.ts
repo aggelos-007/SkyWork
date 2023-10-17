@@ -5,11 +5,30 @@ import { cwd } from 'process';
 import { Collection } from 'discord.js';
 
 export class eventLoader {
-    constructor(client: any, dir: string, defaultEvents?: boolean) {
+    constructor(client: any, dir: string) {
         const eventsPath = cwd() + dir;
         const eventFiles = readdirSync(eventsPath).filter((file: any) => file.endsWith('.js'));
-        const def = defaultEvents === true ? `${color.default.cyan}default ` : ''
-		console.log(`${color.default.FrameWork} ╭ Loading ${def}${color.default.green}events${color.default.white}...`)
+        console.log(`${color.default.FrameWork} ╭ Loading ${color.default.cyan}default ${color.default.green}events${color.default.white}...`)
+        for (const file of eventFiles) {
+        	const filePath = join(eventsPath, file);
+        	const event = require(filePath);
+        	if (event.once) {
+        		client.once(event.name, (...args: any) => event.code(client, ...args));
+				console.log(`${color.default.FrameWork} ├ Loaded ${color.default.blue + file + color.default.white} for ${color.default.red + 'once'}`)
+        	} else {
+        		client.on(event.name, (...args: any) => event.code(client, ...args));
+				console.log(`${color.default.FrameWork} ├ Loaded ${color.default.blue + file + color.default.white}`)
+        	}
+        }
+		console.log(`${color.default.FrameWork} ╰ Events ${color.default.green}Loaded`)
+    }
+}
+
+export class eventLoaderTS {
+    constructor(client: any, dir: string) {
+        const eventsPath = cwd() + dir;
+        const eventFiles = readdirSync(eventsPath).filter((file: any) => file.endsWith('.js'));
+        console.log(`${color.default.FrameWork} ╭ Loading ${color.default.green}events${color.default.white}...`)
         for (const file of eventFiles) {
         	const filePath = join(eventsPath, file);
         	const event = require(filePath);

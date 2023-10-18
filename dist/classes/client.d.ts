@@ -1,9 +1,10 @@
-import { Client, Collection, ClientOptions, IntentsBitField, Partials } from 'discord.js';
+import { Client, Collection, ClientOptions, IntentsBitField } from 'discord.js';
 import { SWStatus } from './status';
 export interface SWClientOptions extends ClientOptions {
     token?: string;
-    prefix?: string[];
+    prefix?: string | string[];
     disableDefaults?: boolean;
+    developers?: string[];
 }
 declare module 'discord.js' {
     interface Client {
@@ -12,9 +13,7 @@ declare module 'discord.js' {
     }
 }
 export declare class SkyWork {
-    options: (Omit<ClientOptions, "intents" & "partials"> & {
-        partials: Partials;
-    } & {
+    options: (Omit<ClientOptions, "intents"> & {
         intents: IntentsBitField;
     }) & SWClientOptions;
     client: Client;

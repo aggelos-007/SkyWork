@@ -2,7 +2,7 @@ import { ActivityType } from "discord.js";
 export interface SWStatus {
     text?: string;
     type?: ActivityType;
-    status?: "online" | "idle" | "dnd" | "offline";
+    status?: string;
     url?: string;
 }
 export declare class SkyStatus {

@@ -5,8 +5,9 @@ import { SWStatus, SkyStatus } from './status';
 
 export interface SWClientOptions extends ClientOptions {
     token?: string,
-    prefix?: string[],
-    disableDefaults?: boolean
+    prefix?: string | string[],
+    disableDefaults?: boolean,
+    developers?: string[]
 }
 
 declare module 'discord.js' {
@@ -17,14 +18,14 @@ declare module 'discord.js' {
 }
 
 export class SkyWork {
-    public declare options: (Omit<ClientOptions, "intents" & "partials"> & { partials: Partials } & { intents: IntentsBitField }) & SWClientOptions
+    public declare options: (Omit<ClientOptions, "intents"> & { intents: IntentsBitField }) & SWClientOptions
     public client: Client
     
     constructor(options: SWClientOptions){
         let { token, intents, prefix, partials, disableDefaults } = options;
         const client = new Client({
             intents: intents,
-            partials: partials,            
+            partials: [Partials.Channel, Partials.GuildMember, Partials.Message, Partials.User, Partials.Reaction],            
         });
         this.client = client
         client.bot = new Collection()

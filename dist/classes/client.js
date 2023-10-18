@@ -34,7 +34,7 @@ class SkyWork {
         let { token, intents, prefix, partials, disableDefaults } = options;
         const client = new discord_js_1.Client({
             intents: intents,
-            partials: partials,
+            partials: [discord_js_1.Partials.Channel, discord_js_1.Partials.GuildMember, discord_js_1.Partials.Message, discord_js_1.Partials.User, discord_js_1.Partials.Reaction],
         });
         this.client = client;
         client.bot = new discord_js_1.Collection();

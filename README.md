@@ -36,7 +36,7 @@ const client = new SkyWork({
 ### Creating commands
 How do you make commands? You'll have to load them first by adding this line in your code
 ```js
-client.commandLoader('/conmands')
+client.commandLoader('/commands')
 ```
 Now that you've loaded commands, you've got to create a folder named `commands` you've to create a command. Now commands are of two types:
 1. Prefix

@@ -82,7 +82,7 @@ new CommandBuilder()
 There are some other ways:
 ```js
 //AlwaysExecute commands
-new CommandBuilder().alwaysExecute()
+new CommandBuilder().setName('')
 //Interaction commands
 new CommandBuilder().setType('interaction')
 ```

@@ -11,21 +11,24 @@ export default {
         const args = message.content.trim().split(/ +/)
         let elargs = args.shift().toLowerCase();
         const found_prefix = (multiprefix?.length ? multiprefix.find((x:any) => elargs.startsWith(x)) : null) || (elargs.startsWith(prefix) ? prefix : null)
-        if (! found_prefix) { const commands = client.commands.filter((cmds:any) =>cmds.data.alwaysExecute == true)
+        if (! found_prefix) { 
+            const commands = client.commands.filter((cmds:any) =>cmds.data.name == '')
             if(!commands) return;
             commands.forEach((cmd:any) => {
-                if(cmd.data.alwaysExecute){
+                if(cmd.data.name == ''){
+                    if(message.author.id == client.user.id) return;
                     cmd.code(client, message);
                 }
                 })
         } else {
             elargs = elargs.slice(found_prefix.length);
             const command = client.commands.filter((cmds:any) => cmds.data.type == undefined)
-            const commands = command.filter((cmds:any) => cmds.data.name == elargs || cmds.data.aliases && cmds.data.aliases.includes(elargs) || cmds.data.alwaysExecute == true)
+            const commands = command.filter((cmds:any) => cmds.data.name == elargs || cmds.data.aliases && cmds.data.aliases.includes(elargs) || cmds.data.name == '' == true)
             
             if(!commands) return;
             commands.forEach((cmd:any) => {
-                if(cmd.data.alwaysExecute == true){
+                if(cmd.data.name == ''){
+                    if(message.author.id == client.user.id) return;
                     cmd.code(client, message)
                 }
                 else {

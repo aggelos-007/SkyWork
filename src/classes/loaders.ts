@@ -1,14 +1,14 @@
 import { readdirSync, lstatSync } from 'fs';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import * as color from '../auxiliar/colors';
 import { cwd } from 'process';
 import { Collection } from 'discord.js';
 
 export class eventLoader {
     constructor(client: any, dir: string) {
-        const eventsPath = cwd() + dir;
+        const eventsPath = resolve(dir);
         const eventFiles = readdirSync(eventsPath).filter((file: any) => file.endsWith('.js'));
-        console.log(`${color.default.FrameWork} ╭ Loading ${color.default.cyan}default ${color.default.green}events${color.default.white}...`)
+        console.log(`${color.default.FrameWork} ╭ Loading ${color.default.green}events${color.default.white}...`)
         for (const file of eventFiles) {
         	const filePath = join(eventsPath, file);
         	const event = require(filePath);
@@ -26,9 +26,9 @@ export class eventLoader {
 
 export class eventLoaderTS {
     constructor(client: any, dir: string) {
-        const eventsPath = cwd() + dir;
+        const eventsPath = resolve(dir);
         const eventFiles = readdirSync(eventsPath).filter((file: any) => file.endsWith('.js'));
-        console.log(`${color.default.FrameWork} ╭ Loading ${color.default.green}events${color.default.white}...`)
+        console.log(`${color.default.FrameWork} ╭ Loading ${color.default.cyan}default ${color.default.green}events${color.default.white}...`)
         for (const file of eventFiles) {
         	const filePath = join(eventsPath, file);
         	const event = require(filePath);

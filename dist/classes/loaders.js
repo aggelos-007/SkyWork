@@ -27,13 +27,12 @@ exports.commandLoader = exports.eventLoaderTS = exports.eventLoader = void 0;
 const fs_1 = require("fs");
 const path_1 = require("path");
 const color = __importStar(require("../auxiliar/colors"));
-const process_1 = require("process");
 const discord_js_1 = require("discord.js");
 class eventLoader {
     constructor(client, dir) {
-        const eventsPath = (0, process_1.cwd)() + dir;
+        const eventsPath = (0, path_1.resolve)(dir);
         const eventFiles = (0, fs_1.readdirSync)(eventsPath).filter((file) => file.endsWith('.js'));
-        console.log(`${color.default.FrameWork} ╭ Loading ${color.default.cyan}default ${color.default.green}events${color.default.white}...`);
+        console.log(`${color.default.FrameWork} ╭ Loading ${color.default.green}events${color.default.white}...`);
         for (const file of eventFiles) {
             const filePath = (0, path_1.join)(eventsPath, file);
             const event = require(filePath);
@@ -52,9 +51,9 @@ class eventLoader {
 exports.eventLoader = eventLoader;
 class eventLoaderTS {
     constructor(client, dir) {
-        const eventsPath = (0, process_1.cwd)() + dir;
+        const eventsPath = (0, path_1.resolve)(dir);
         const eventFiles = (0, fs_1.readdirSync)(eventsPath).filter((file) => file.endsWith('.js'));
-        console.log(`${color.default.FrameWork} ╭ Loading ${color.default.green}events${color.default.white}...`);
+        console.log(`${color.default.FrameWork} ╭ Loading ${color.default.cyan}default ${color.default.green}events${color.default.white}...`);
         for (const file of eventFiles) {
             const filePath = (0, path_1.join)(eventsPath, file);
             const event = require(filePath);

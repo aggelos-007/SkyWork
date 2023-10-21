@@ -33,7 +33,7 @@ export class SkyWork {
         console.log(color.default.white + 'Booting up...')
         client.login(token)
         console.log(`${color.default.FrameWork} Core is running...`)
-        new eventLoaderTS(client, '/node_modules/SkyWork/dist/events')
+        new eventLoaderTS(client, './node_modules/SkyWork/dist/events')
     }
     config(name: string, options: object){
         this.client.config = new Collection()

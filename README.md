@@ -28,7 +28,6 @@ const { SkyWork } = require('skywork')
 const client = new SkyWork({
     token: 'TOKEN',
     intents: [ "Intents from discord.js" ], // you have to add the intents manually
-    partials: [ Partials ],
     prefix: 'PREFIX', // or prefix: ['prefix1', 'prefix2' etc.]
     developers: ['Your ID here'] // you can add more ID(s) by doing developers: ['ID1', 'ID2' etc.]
 })
